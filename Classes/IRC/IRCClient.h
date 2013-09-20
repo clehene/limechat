@@ -44,11 +44,13 @@ typedef enum {
     BOOL isConnected;
     BOOL isLoggedIn;
     BOOL isQuitting;
+    BOOL isAway;
     NSStringEncoding encoding;
 
     NSString* inputNick;
     NSString* sentNick;
     NSString* myNick;
+    NSString* previousNick;
     int tryingNickNumber;
 
     NSString* serverHostname;
@@ -93,6 +95,8 @@ typedef enum {
 @property (nonatomic, readonly) BOOL isConnected;
 @property (nonatomic, readonly) BOOL isReconnecting;
 @property (nonatomic, readonly) BOOL isLoggedIn;
+@property (nonatomic) BOOL isAway;
+
 @property (nonatomic, readonly) NSString* myNick;
 @property (nonatomic, readonly) NSString* myAddress;
 @property (nonatomic, strong) IRCChannel* lastSelectedChannel;

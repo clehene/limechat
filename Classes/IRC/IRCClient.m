@@ -13,6 +13,7 @@
 #import "NSDataHelper.h"
 #import "NSData+Kana.h"
 #import "GTMBase64.h"
+#import "IdleSensor.h"
 
 
 #define MAX_JOIN_CHANNELS   10
@@ -38,6 +39,7 @@
 @synthesize isConnecting;
 @synthesize isConnected;
 @synthesize isLoggedIn;
+@synthesize isAway;
 
 @synthesize myNick;
 @synthesize myAddress;
@@ -3756,6 +3758,32 @@
 
 - (void)ircConnectionDidReceive:(NSData*)data
 {
+
+// TODO (clehene) create a timer just for this so we don't check on every recv
+    NSNumber *idleTime = [NSNumber numberWithDouble:[IdleSensor CFDateGetIdleTimeInterval]];
+    NSNumber *threshold = [NSNumber numberWithInt:60];
+    if ([idleTime doubleValue] > [threshold doubleValue]) {
+        if (![self isAway]) {
+            NSString *awayMessage = [NSString stringWithFormat:@"Idle for %@ threshold %@", idleTime, threshold];
+            [self send:AWAY, awayMessage, nil];
+            previousNick = [myNick retain];
+            NSUInteger sizeToFit = MIN(7,[myNick length]);
+            [self changeNick:[NSString stringWithFormat:@"{%@}", [myNick substringToIndex:sizeToFit]]];
+            isAway = YES;
+        }
+    } else {
+        NSLog(@"NOT IDLE time"  );
+        NSLog(@"myNick = %@ back to previousNick = %@ inputNick = %@, sentNick = %@", myNick, previousNick, inputNick, sentNick);
+        if ([self isAway]) {
+            [self changeNick: previousNick];
+            [self send:AWAY, nil];
+            isAway = NO;
+        }
+    };
+    NSLog(@"Idle time %@", idleTime);
+
+
+
     NSStringEncoding enc = encoding;
     if (encoding == NSUTF8StringEncoding && config.fallbackEncoding != NSUTF8StringEncoding && ![data isValidUTF8]) {
         enc = config.fallbackEncoding;

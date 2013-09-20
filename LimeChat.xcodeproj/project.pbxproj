@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2735CC1D17C1B6EC00E0AC11 /* NSDateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2735CC1C17C1B6EC00E0AC11 /* NSDateHelper.m */; };
+		33146AB360FD23E00FE75411 /* IdleSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 331463775BCF6204AF083026 /* IdleSensor.m */; };
 		780844D2134CD34B003BB84C /* ImageDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 780844D1134CD34B003BB84C /* ImageDownloadManager.m */; };
 		780844D3134CD34B003BB84C /* ImageDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 780844D1134CD34B003BB84C /* ImageDownloadManager.m */; };
 		780844F6134CD45E003BB84C /* ImageSizeCheckClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 780844F5134CD45E003BB84C /* ImageSizeCheckClient.m */; };
@@ -361,6 +362,8 @@
 		2735CC1C17C1B6EC00E0AC11 /* NSDateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateHelper.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		331463775BCF6204AF083026 /* IdleSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdleSensor.m; sourceTree = "<group>"; };
+		3314642A6E7CEBB442A4CAB4 /* IdleSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdleSensor.h; sourceTree = "<group>"; };
 		780253C20C09525900C170D4 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		780844D0134CD34B003BB84C /* ImageDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloadManager.h; sourceTree = "<group>"; };
 		780844D1134CD34B003BB84C /* ImageDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloadManager.m; sourceTree = "<group>"; };
@@ -903,6 +906,8 @@
 				78A8C10B11737F660044E7A1 /* URLOpener.m */,
 				2735CC1A17C1B5F500E0AC11 /* NSDateHelper.h */,
 				2735CC1C17C1B6EC00E0AC11 /* NSDateHelper.m */,
+				331463775BCF6204AF083026 /* IdleSensor.m */,
+				3314642A6E7CEBB442A4CAB4 /* IdleSensor.h */,
 			);
 			name = Helpers;
 			path = Classes/Helpers;
@@ -1530,6 +1535,7 @@
 				78AB173315C37287008CD998 /* GrowlNotificationController.m in Sources */,
 				78A3004E15C38FB2003263AA /* UserNotificationController.m in Sources */,
 				2735CC1D17C1B6EC00E0AC11 /* NSDateHelper.m in Sources */,
+				33146AB360FD23E00FE75411 /* IdleSensor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1695,7 +1701,7 @@
 		78E570D40C1C306500BDF7EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Satoshi Nakagawa";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Others/Normal/Info.plist;
 				PROVISIONING_PROFILE = "";
@@ -1705,7 +1711,7 @@
 		78E570D50C1C306500BDF7EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Satoshi Nakagawa";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Others/Normal/Info.plist;
 				PROVISIONING_PROFILE = "";
@@ -1741,6 +1747,8 @@
 					Foundation,
 					"-framework",
 					AppKit,
+					"-framework",
+					IOKit,
 				);
 				PRODUCT_NAME = LimeChat;
 				SDKROOT = macosx;
@@ -1774,6 +1782,8 @@
 					Foundation,
 					"-framework",
 					AppKit,
+					"-framework",
+					IOKit,
 				);
 				PRODUCT_NAME = LimeChat;
 				SDKROOT = macosx;
